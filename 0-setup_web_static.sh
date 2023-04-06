@@ -22,7 +22,6 @@ do
 done
 
 sudo touch "$html"
-sudo chown -R ubuntu:ubuntu "/data/"
 
 if [ ! -s "$html" ]
 then
@@ -43,8 +42,10 @@ then
 fi
 ln -s "$dir5" "$symlink"
 
+sudo chown -R ubuntu:ubuntu "/data/"
+
 if ! grep -q "location /hbnb_static {" $CONF
 then
         sudo sed -i '/server_name _;/a\\tlocation \/hbnb_static {\n\t\talias \/data\/web_static\/current\/;\n\t}\n' $CONF
 fi
-sudo nginx -s reload
+sudo service nginx restart
