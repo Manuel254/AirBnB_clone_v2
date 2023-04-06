@@ -8,12 +8,11 @@ dir2=/data/web_static/
 dir3=/data/web_static/releases/
 dir4=/data/web_static/shared/
 dir5=/data/web_static/releases/test/
-DIRS=("$dir1 $dir2 $dir3 $dir4 $dir5")
 html="$dir5""index.html"
 symlink="$dir2""current"
 CONF=/etc/nginx/sites-available/default
 
-for dir in "${DIRS[@]}"
+for dir in "$dir1" "$dir2" "$dir3" "$dir4" "$dir5"
 do
         if [ ! -d "$dir" ]
         then
