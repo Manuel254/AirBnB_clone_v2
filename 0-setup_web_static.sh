@@ -3,6 +3,7 @@
 
 sudo apt update
 sudo apt install -y nginx
+sudo service nginx start
 dir1=/data/
 dir2=/data/web_static/
 dir3=/data/web_static/releases/
