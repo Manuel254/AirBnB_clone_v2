@@ -3,6 +3,7 @@
 
 sudo apt -y update
 sudo apt install -y nginx
+sudo service nginx start
 dir1=/data/
 dir2=/data/web_static/
 dir3=/data/web_static/releases/
@@ -25,7 +26,15 @@ sudo chown -R ubuntu:ubuntu "/data/"
 
 if [ ! -s "$html" ]
 then
-        echo -e "<html>\n\t<head>\n\t</head>\n\t<body>\n\t\tHolberton School\n\t</body>\n</html" > "$html"
+cat > "$html" << EOF
+  <html>
+    <head>
+    </head>
+    <body>
+      Holberton School
+    </body>
+  </html>
+EOF
 fi
 
 if [ -e "$symlink" ]
