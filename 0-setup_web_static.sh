@@ -36,11 +36,7 @@ cat > "$html" << EOF
 EOF
 fi
 
-if [ -e "$symlink" ]
-then
-        sudo rm "$symlink"
-fi
-ln -s "$dir5" "$symlink"
+ln -sf "$dir5" "$symlink"
 
 sudo chown -R ubuntu:ubuntu "/data/"
 
