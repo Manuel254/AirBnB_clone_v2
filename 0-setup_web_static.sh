@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Sets up web servers for deployment of static files
 
-sudo apt update
+sudo apt -y update
 sudo apt install -y nginx
 dir1=/data/
 dir2=/data/web_static/
