@@ -26,7 +26,15 @@ sudo chown -R ubuntu:ubuntu "/data/"
 
 if [ ! -s "$html" ]
 then
-        echo -e "<html>\n\t<head>\n\t</head>\n\t<body>\n\t\tHolberton School\n\t</body>\n</html" > "$html"
+cat > "$html" << EOF
+  <html>
+    <head>
+    </head>
+    <body>
+      Holberton School
+    </body>
+  </html>
+EOF
 fi
 
 if [ -e "$symlink" ]
