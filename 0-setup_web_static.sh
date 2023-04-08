@@ -4,24 +4,12 @@
 sudo apt -y update
 sudo apt install -y nginx
 sudo service nginx start
-dir1=/data/
-dir2=/data/web_static/
-dir3=/data/web_static/releases/
-dir4=/data/web_static/shared/
-dir5=/data/web_static/releases/test/
-html="$dir5""index.html"
-symlink="$dir2""current"
 CONF=/etc/nginx/sites-available/default
 
-for dir in "$dir1" "$dir2" "$dir3" "$dir4" "$dir5"
-do
-        if [ ! -d "$dir" ]
-        then
-                sudo mkdir "$dir"
-        fi
-done
+sudo mkdir -p "/data/web_static/releases/test"
+sudo mkdir -p "/data/web_static/shared"
 
-sudo touch "$html"
+sudo touch "/data/web_static/releases/test/index.html"
 
 if [ ! -s "$html" ]
 then
@@ -36,7 +24,7 @@ cat > "$html" << EOF
 EOF
 fi
 
-ln -sf "$dir5" "$symlink"
+ln -sf "/data/web_static/releases/test/" "/data/web_static/current"
 
 sudo chown -R ubuntu:ubuntu "/data/"
 
