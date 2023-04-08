@@ -38,11 +38,10 @@ def do_deploy(archive_path):
         return False
 
     put(archive_path, '/tmp/')
-    fname = Path(archive_path).stem
     run('mkdir -p {}{}'.format(static, fname))
     run('tar -xzf /tmp/{}.tgz -C {}{}/'.format(fname, static, fname))
     run('rm /tmp/{}.tgz'.format(fname))
     run('rm -rf {}'.format(link))
-    run('ln -s {}/{} {}'.format(static, fname, link))
+    run('ln -s {}{} {}'.format(static, fname, link))
 
     return True
