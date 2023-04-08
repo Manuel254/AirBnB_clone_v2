@@ -11,20 +11,20 @@ sudo mkdir -p "/data/web_static/shared"
 
 sudo touch "/data/web_static/releases/test/index.html"
 
-if [ ! -s "$html" ]
+if [ ! -s "/data/web_static/releases/test/index.html" ]
 then
-cat > "$html" << EOF
-  <html>
-    <head>
-    </head>
-    <body>
-      Holberton School
-    </body>
-  </html>
+cat > "/data/web_static/releases/test/index.html" << EOF
+<html>
+  <head>
+  </head>
+  <body>
+    Holberton School
+  </body>
+</html>
 EOF
 fi
 
-ln -sf "/data/web_static/releases/test/" "/data/web_static/current"
+sudo ln -sf "/data/web_static/releases/test/" "/data/web_static/current"
 
 sudo chown -R ubuntu:ubuntu "/data/"
 
