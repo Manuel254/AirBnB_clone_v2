@@ -65,3 +65,7 @@ class FileStorage:
             key = f"{obj.__class__.__name__}.{obj.id}"
             del db[key]
             self.save()
+
+    def close(self):
+        """Calls the reload method"""
+        self.reload()

@@ -15,7 +15,8 @@ host = getenv("HBNB_MYSQL_HOST")
 db = getenv("HBNB_MYSQL_DB")
 env = getenv("HBNB_ENV")
 
-DB = f"mysql+mysqldb://{user}:{passwd}@{host}/{db}"
+DB = "mysql+mysqldb://{}:{}@{}/{}".format(user, passwd, host, db)
+
 
 class DBStorage:
     """This class defines the database engine"""
@@ -44,14 +45,14 @@ class DBStorage:
         if cls:
             objs = self.__session.query(cls)
             for obj in objs:
-                    key = f"{obj.__class__.__name__}.{obj.id}"
+                    key = "{}.{}".format(obj.__class__.__name__, obj.id)
                     dictionary.update({key: obj})
         else:
             for cls_name in classes:
                 objs = self.__session.query(cls_name)
 
                 for obj in objs:
-                    key = f"{obj.__class__.__name__}.{obj.id}"
+                    key = "{}.{}".format(obj.__class__.__name__, obj.id)
                     dictionary.update({key: obj})
         return dictionary
 
@@ -83,3 +84,7 @@ class DBStorage:
         Session = scoped_session(sessionmaker(bind=self.__engine,
                                               expire_on_commit=True))
         self.__session = Session()
+
+    def close(self):
+        """Calls the remove method"""
+        self.__session.remove()
