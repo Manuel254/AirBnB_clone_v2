@@ -8,10 +8,12 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+
 @app.teardown_appcontext
 def request_cleanup(exception=None):
     """Removes current Session"""
     storage.close()
+
 
 @app.route('/states_list', strict_slashes=False)
 def states_list():
