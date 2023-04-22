@@ -4,7 +4,7 @@
         <TITLE>HBNB</TITLE>
     </HEAD>
     <BODY>
-        {% if id %}
+        {% if id and id == states.id %}
         <H1>State: {{ states.name }}</H1>
         <H3>Cities:</H3>
         <UL>
@@ -12,6 +12,8 @@
             <LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
         {% endfor -%}
         </UL>
+        {% elif id and id != states.id %}
+        <H1>Not found!</H1>
         {% else %}
         <H1>States</H1>
         <UL>
